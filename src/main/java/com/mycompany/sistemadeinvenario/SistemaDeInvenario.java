@@ -4,7 +4,7 @@
  */
 
 package com.mycompany.sistemadeinvenario;
-
+ import javax.swing.JOptionPane;
 /**
  *
  * @author ayosu
@@ -13,9 +13,17 @@ public class SistemaDeInvenario {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-       Login  login = new Login ();
+       Empleado emp = new Empleado();
+       Conectar conectar = new Conectar();
+       conectar.conexion();
+       
+       
+       
+        
+       
+       /*Login  login = new Login ();
        login.setLocationRelativeTo(null);
         login.setVisible(true);
-        login.setTitle("login");
+        login.setTitle("login");*/
     }
 }
