@@ -17,6 +17,11 @@ public class SistemaDeInvenario {
        Conectar conectar = new Conectar();
        conectar.conexion();
        
+       Login login= new Login();
+       login.setVisible(true);
+       login.setTitle("login");
+       login.setLocationRelativeTo(null);
+       
        
        
         
