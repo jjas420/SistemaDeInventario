@@ -9,7 +9,13 @@ package com.mycompany.sistemadeinvenario;
  * @author ayosu
  */
 public class Empleado {
-    private String nombre;
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "nombres=" + nombres + ", cedulaDeIdentidad=" + cedulaDeIdentidad + ", direccion=" + direccion + ", numeroDeTelefono=" + numeroDeTelefono + ", cargo=" + cargo + '}';
+    }
+    
+    private String nombres;
     private int cedulaDeIdentidad;
     private String direccion;
     private String numeroDeTelefono;
@@ -18,7 +24,7 @@ public class Empleado {
         
     };
     public Empleado(String nombre, int cedulaDeIdentidad, String direccion, String NumeroDeTelefono,String Cargo) {
-        this.nombre = nombre;
+        this.nombres = nombre;
         this.cedulaDeIdentidad = cedulaDeIdentidad;
         this.direccion = direccion;
         this.numeroDeTelefono = NumeroDeTelefono;
@@ -34,11 +40,11 @@ public class Empleado {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombres;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombres = nombre;
     }
 
     public int getCedulaDeIdentidad() {

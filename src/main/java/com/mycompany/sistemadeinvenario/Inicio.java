@@ -6,6 +6,7 @@ package com.mycompany.sistemadeinvenario;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -69,6 +70,11 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2.setText("AJ CONSTRUCTION");
 
         jButton5.setText("cerrar session");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Usuario:");
 
@@ -140,6 +146,12 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+                JOptionPane.showMessageDialog(null, "adios :D  "+" "+Usuario);
+                this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

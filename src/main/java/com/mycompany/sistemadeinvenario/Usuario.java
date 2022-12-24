@@ -33,6 +33,12 @@ public class Usuario extends Empleado {
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
     }
+
+    @Override
+    public String toString() {
+        
+        return ", nombres=" + super.getNombre()  +  " cedula=" + super.getCedulaDeIdentidad() +  "\n cargo=" + super.getCargo()  +  "usuario=" + usuario  + ", contraseña=" + contraseña +'}';
+    }
     
     
     
