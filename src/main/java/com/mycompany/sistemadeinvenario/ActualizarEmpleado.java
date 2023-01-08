@@ -25,7 +25,6 @@ public class ActualizarEmpleado extends javax.swing.JFrame {
     public ActualizarEmpleado() {
         initComponents();
         
-        this.setVisible(true);
         this.setTitle("actualizar empleado");
         this.setLocationRelativeTo(null);
     }

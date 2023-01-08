@@ -424,9 +424,7 @@ void Solonumeros(JTextField valor, KeyEvent evt){
    String sql = "DELETE FROM usuario where CedulaDeIdentidad= ?";
 
         try {
-            ps = cn.prepareStatement(sql);
-            ps.setInt(1,Integer.parseInt(txtBuscador.getText()) );
-            ps.executeUpdate();
+         
              
              String sql2 = "SELECT * FROM usuario where CedulaDeIdentidad=" + '"' + Integer.parseInt(txtBuscador.getText())+ '"';
 
@@ -436,6 +434,9 @@ void Solonumeros(JTextField valor, KeyEvent evt){
 
             if (rs.next()) {
                 System.out.println("entro");
+                   ps = cn.prepareStatement(sql);
+            ps.setInt(1,Integer.parseInt(txtBuscador.getText()) );
+            ps.executeUpdate();
                  JOptionPane.showMessageDialog(null, "eliminado con exito");
 
                
@@ -457,10 +458,10 @@ void Solonumeros(JTextField valor, KeyEvent evt){
     private void TablaDeEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDeEmpleadosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_TablaDeEmpleadosMouseClicked
-ActualizarEmpleado a;
+ActualizarEmpleado a= new ActualizarEmpleado();
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        
-            a= new ActualizarEmpleado();
+            a.setVisible(true);
             
             
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -533,7 +534,37 @@ ActualizarEmpleado a;
         
         
     }
+public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Herramientas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Herramientas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Herramientas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Herramientas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VentanEmpleado(" ").setVisible(true);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaDeEmpleados;
     private javax.swing.JButton btnInicio;
@@ -560,6 +591,7 @@ ActualizarEmpleado a;
     private javax.swing.JTextField txtRut;
     // End of variables declaration//GEN-END:variables
 
+   
 Conectar con = new Conectar();
     Connection cn = con.conexion();
 }

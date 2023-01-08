@@ -4,24 +4,48 @@
  */
 package com.mycompany.sistemadeinvenario;
 
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ayosu
  */
 public class Herramientas extends javax.swing.JFrame {
-
+        DefaultTableModel modelo = new DefaultTableModel();
+        String usuario=" ";
     /**
      * Creates new form Herramientas
      */
-    public Herramientas() {
+    public Herramientas(String usuario) {
         initComponents();
+        
+         this.setVisible(true);
+        this.setTitle("herramientas");
+        this.setLocationRelativeTo(null);
+         ImageIcon img=new ImageIcon("src/imagenes/herramientas.jpg");
+        Icon icono2= new ImageIcon(img.getImage().getScaledInstance(icono.getWidth(), icono.getHeight(),img.getImageLoadStatus()));
+        icono.setIcon(icono2);
+           ImageIcon img2=new ImageIcon("src/imagenes/INICIO.png");
+        Icon icono3= new ImageIcon(img2.getImage().getScaledInstance(btnInicio.getWidth(), btnInicio.getHeight(),img.getImageLoadStatus()));
+        btnInicio.setIcon(icono3);
+         modelo.addColumn("codigo");
+            modelo.addColumn("nombres");
+            modelo.addColumn("cantidad");
+            this.usuario=usuario;
+          
+            TablaDeHerramientas.setModel(modelo);
     }
 
     /**
@@ -42,9 +66,21 @@ public class Herramientas extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         txtCantidad = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        icono = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaDeHerramientas = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        txtCodigo1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        btnInicio = new javax.swing.JButton();
+        btnInicio1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Herramientas");
@@ -55,24 +91,26 @@ public class Herramientas extends javax.swing.JFrame {
 
         jLabel4.setText("cantidad");
 
-        txtCodigo.setText("jTextField1");
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoActionPerformed(evt);
             }
         });
 
-        txtNombre.setText("jTextField1");
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNombreActionPerformed(evt);
             }
         });
 
-        txtCantidad.setText("jTextField1");
         txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCantidadActionPerformed(evt);
+            }
+        });
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
             }
         });
 
@@ -83,25 +121,75 @@ public class Herramientas extends javax.swing.JFrame {
             }
         });
 
+        icono.setText("codigo");
+
+        TablaDeHerramientas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Codigo", "Nombre", "Cantidad"
+            }
+        ));
+        jScrollPane1.setViewportView(TablaDeHerramientas);
+
+        jButton2.setText("buscador");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        txtCodigo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigo1ActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("codigo");
+
+        jButton3.setText("Mostrar Herramientas");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("eliminar herramienta");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Actualizar Herramienta");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
+                        .addGap(192, 192, 192)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(25, 25, 25)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(108, 108, 108))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
@@ -109,18 +197,49 @@ public class Herramientas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton4)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jButton2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton3)))))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(icono, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -129,25 +248,45 @@ public class Herramientas extends javax.swing.JFrame {
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jButton1))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton2)
+                    .addComponent(jButton5)
+                    .addComponent(txtCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(187, 187, 187))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 346, Short.MAX_VALUE)
+                    .addComponent(btnInicio1)
+                    .addGap(0, 347, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(btnInicio1)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -164,9 +303,36 @@ public class Herramientas extends javax.swing.JFrame {
     private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCantidadActionPerformed
+void Solonumeros(JTextField valor, KeyEvent evt){
+    int key = evt.getKeyChar();
 
+    boolean numeros = key >= 48 && key <= 57;
+        
+    if (!numeros)
+    {
+        evt.consume();
+    }
+
+    if (valor.getText().trim().length() == 10) {
+        evt.consume();
+    }  
+   
+    
+}
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
+
+         try {
+            String sql = "SELECT * FROM herramientas where codigo=" + '"' + txtCodigo.getText()+ '"';
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "codigo ya esta registrado usa otro codigo");
+               
+
+
+            } else {     
         try {
             PreparedStatement pst = cn.prepareStatement("INSERT INTO herramientas (codigo,nombre ,cantidad) values(?,?,?)");
             pst.setString(1,txtCodigo.getText());
@@ -179,7 +345,123 @@ public class Herramientas extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Herramientas.class.getName()).log(Level.SEVERE, null, ex);
         }
+      }
+         }catch (SQLException ex) {
+             System.out.println(ex.getErrorCode()+ ex.getMessage());
+        }
+            
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+    Solonumeros(txtCantidad,evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadKeyTyped
+  void mostrarDatos(String rut){
+         DefaultTableModel   modelo1 = new DefaultTableModel();
+          modelo1.addColumn("codigo");
+            modelo1.addColumn("nombres");
+            modelo1.addColumn("cantidad");
+          
+            TablaDeHerramientas.setModel(modelo1);
+
+      
+         
+            String sql="";
+           if (rut.equals("")) {
+            sql = "SELECT * FROM herramientas";
+        }else{
+             sql = "SELECT * FROM herramientas WHERE codigo LIKE " +"'"+rut+"'";
+
+           }
+           System.out.println(sql);
+            String[] datos = new String[4];
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+               
+                modelo1.addRow(datos);
+                
+                
+            }
+            TablaDeHerramientas.setModel(modelo1);
+        } catch (SQLException ex) {
+            
+        }
+         
+        
+        
+    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       mostrarDatos(txtCodigo1.getText());
+        System.out.println(txtCodigo1.getText());// TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtCodigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigo1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+ mostrarDatos("");
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+    PreparedStatement ps;
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+ String sql = "DELETE FROM herramientas where codigo= ?";
+
+        try {
+            
+             
+             String sql2 = "SELECT * FROM herramientas WHERE codigo LIKE " +"'"+txtCodigo1.getText()+"'";
+             System.out.println(sql2);
+
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql2);
+            //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 clave
+
+            if (rs.next()) {
+               
+                System.out.println("entro");
+                ps = cn.prepareStatement(sql);
+                ps.setString(1,txtCodigo1.getText()) ;
+                System.out.println(sql+txtCodigo1.getText());
+                 ps.executeUpdate();
+                 JOptionPane.showMessageDialog(null, "eliminado con exito");
+
+               
+
+
+            }else{
+            JOptionPane.showMessageDialog(null, "NUMERO DE DOCUMENTO NO ENCONTRADO");}
+            
+        
+            
+
+        } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getCause() + ex.getMessage()+ ex.getErrorCode());
+                        System.out.println( ex.getCause() + ex.getMessage()+ ex.getErrorCode());
+            
+        }            // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+     ActualizarHerramienta a=   new ActualizarHerramienta();        // TODO add your handling code here:
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    a.setVisible(true);
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+    Inicio inicio= new Inicio(usuario);
+    this.dispose();
+    a.dispose();
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,22 +493,32 @@ public class Herramientas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Herramientas().setVisible(true);
+                new Herramientas(" ").setVisible(true);
             }
         });
     }
     Conectar con = new Conectar();
     Connection cn = con.conexion();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaDeHerramientas;
+    private javax.swing.JButton btnInicio;
+    private javax.swing.JButton btnInicio1;
+    private javax.swing.JLabel icono;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigo1;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
