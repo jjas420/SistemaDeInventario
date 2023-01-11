@@ -48,11 +48,12 @@ public class VentanaMateriales extends javax.swing.JFrame {
         
         //btnInicio 
         
-            modelo.addColumn("Nombres");
-            modelo.addColumn("Cedula");
-            modelo.addColumn("Direccion");
-            modelo.addColumn("Telefono");
-            modelo.addColumn("Cargo");
+            modelo.addColumn("Codigo");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Proveedores");
+            modelo.addColumn("Cantidad");
+            modelo.addColumn("Precio");
+            modelo.addColumn("Total");
             TablaDeEmpleados.setModel(modelo);
     }
 
@@ -70,13 +71,11 @@ public class VentanaMateriales extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
-        txtRut = new javax.swing.JTextField();
+        txtproveedores = new javax.swing.JTextField();
         txtPrecio = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtCargo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDeEmpleados = new javax.swing.JTable();
@@ -89,7 +88,7 @@ public class VentanaMateriales extends javax.swing.JFrame {
         icono1 = new javax.swing.JLabel();
         btnInicio = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        txtRut1 = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,8 +102,6 @@ public class VentanaMateriales extends javax.swing.JFrame {
 
         jLabel4.setText("precio");
 
-        jLabel5.setText("total:");
-
         jLabel6.setText("Nombre:");
 
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -112,15 +109,26 @@ public class VentanaMateriales extends javax.swing.JFrame {
                 txtCodigoActionPerformed(evt);
             }
         });
-
-        txtRut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRutActionPerformed(evt);
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
             }
         });
-        txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
+
+        txtproveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtproveedoresActionPerformed(evt);
+            }
+        });
+        txtproveedores.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRutKeyTyped(evt);
+                txtproveedoresKeyTyped(evt);
+            }
+        });
+
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
             }
         });
 
@@ -160,7 +168,7 @@ public class VentanaMateriales extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaDeEmpleados);
 
-        jButton2.setText("mostrar todos los empleados");
+        jButton2.setText("mostrar materiales");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -185,7 +193,7 @@ public class VentanaMateriales extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("cedula de identidad:");
+        jLabel7.setText("codigo");
 
         jButton4.setText("eliminar trabajador");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -209,14 +217,14 @@ public class VentanaMateriales extends javax.swing.JFrame {
 
         jLabel8.setText("proveedor");
 
-        txtRut1.addActionListener(new java.awt.event.ActionListener() {
+        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRut1ActionPerformed(evt);
+                txtCantidadActionPerformed(evt);
             }
         });
-        txtRut1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRut1KeyTyped(evt);
+                txtCantidadKeyTyped(evt);
             }
         });
 
@@ -224,32 +232,31 @@ public class VentanaMateriales extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 509, Short.MAX_VALUE)
-                .addComponent(icono1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton4)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jButton3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2))))))
+                                .addComponent(jButton4)
+                                .addGap(26, 26, 26)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addGap(56, 56, 56)
+                                .addComponent(jButton2))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 875, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,39 +268,35 @@ public class VentanaMateriales extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(232, 232, 232)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(75, 75, 75)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(37, 37, 37)
-                                        .addComponent(txtRut1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(32, 32, 32)
-                                        .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtproveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jButton1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel3)
+                                .addGap(38, 38, 38)
+                                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(icono1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -302,31 +305,30 @@ public class VentanaMateriales extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel6)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRut1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
                             .addComponent(jButton1)
                             .addComponent(jLabel8)
-                            .addComponent(txtRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(icono1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtproveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(icono1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
                     .addComponent(txtBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3)
                     .addComponent(jLabel7)
-                    .addComponent(jButton5))
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -346,10 +348,9 @@ public class VentanaMateriales extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    Empleado usuario= new Empleado(txtCodigo.getText(),Integer.parseInt(txtRut.getText()),txtPrecio.getText(),txtNombre.getText(),txtCargo.getText());
-   
+   Materiales materiales= new Materiales(Integer.parseInt(txtCodigo.getText()),txtNombre.getText(),Integer.parseInt(txtCantidad.getText()),Double. parseDouble(txtPrecio.getText()),txtproveedores.getText());
          try {
-            String sql = "SELECT * FROM usuario where CedulaDeIdentidad=" + '"' + +usuario.getCedulaDeIdentidad() + '"';
+            String sql = "SELECT * FROM materiales where codigo=" + '"' + materiales.getCodigo() + '"';
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -365,14 +366,14 @@ public class VentanaMateriales extends javax.swing.JFrame {
             
 
             
-            PreparedStatement pst = cn.prepareStatement("INSERT INTO usuario (usuario, contraseña, nombres, CedulaDeIdentidad, numeroDetelefono,cargo,direccion) VALUES (?,?,?,?,?,?,?)");
-            pst.setString(1,usuario.getNombre() );
-            pst.setString(2,Integer.toString( usuario.getCedulaDeIdentidad()));
-            pst.setString(3, usuario.getNombre());
-            pst.setInt(4, usuario.getCedulaDeIdentidad());
-            pst.setString(5, usuario.getNumeroDeTelefono());
-            pst.setString(6, usuario.getCargo());
-            pst.setString(7, usuario.getDireccion());
+            PreparedStatement pst = cn.prepareStatement("INSERT INTO materiales (codigo, nombre, cantidad, precio, total,proveedor) VALUES (?,?,?,?,?,?)");
+            pst.setInt(1, materiales.getCodigo());
+            pst.setString(2,materiales.getNombre());
+            pst.setInt(3, materiales.getCantidad());
+            pst.setDouble(4, materiales.getPrecio());
+            double total= materiales.getCantidad()*materiales.getPrecio();
+            pst.setDouble(5, total);
+            pst.setString(6, materiales.getProveedor());
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro exitoso!");
@@ -409,9 +410,8 @@ void Solonumeros(JTextField valor, KeyEvent evt){
    
     
 }
-    private void txtRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyTyped
-        Solonumeros(txtRut, evt);       // TODO add your handling code here:
-    }//GEN-LAST:event_txtRutKeyTyped
+    private void txtproveedoresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtproveedoresKeyTyped
+    }//GEN-LAST:event_txtproveedoresKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     mostrarDatos("");        // TODO add your handling code here:
@@ -447,12 +447,12 @@ void Solonumeros(JTextField valor, KeyEvent evt){
     PreparedStatement ps;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-   String sql = "DELETE FROM usuario where CedulaDeIdentidad= ?";
+   String sql = "DELETE FROM materiales where codigo= ?";
 
         try {
          
              
-             String sql2 = "SELECT * FROM usuario where CedulaDeIdentidad=" + '"' + Integer.parseInt(txtBuscador.getText())+ '"';
+             String sql2 = "SELECT * FROM materiales where codigo=" + '"' + Integer.parseInt(txtBuscador.getText())+ '"';
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql2);
@@ -496,12 +496,11 @@ ActualizarEmpleado a= new ActualizarEmpleado();
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
 
-    private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
+    private void txtproveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproveedoresActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtRutActionPerformed
+    }//GEN-LAST:event_txtproveedoresActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-    Solonumeros(txtNombre, evt);        // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
@@ -516,13 +515,21 @@ ActualizarEmpleado a= new ActualizarEmpleado();
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
 
-    private void txtRut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRut1ActionPerformed
+    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtRut1ActionPerformed
+    }//GEN-LAST:event_txtCantidadActionPerformed
 
-    private void txtRut1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRut1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRut1KeyTyped
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+    Solonumeros(txtCantidad,evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        Solonumeros(txtCodigo,evt);       // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        Solonumeros(txtPrecio,evt);        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioKeyTyped
 
     /**
      * @param args the command line arguments
@@ -532,18 +539,19 @@ ActualizarEmpleado a= new ActualizarEmpleado();
     void mostrarDatos(String rut){
                DefaultTableModel modelo1 = new DefaultTableModel();
 
-         modelo1.addColumn("Nombres");
-            modelo1.addColumn("Cedula");
-            modelo1.addColumn("Direccion");
-            modelo1.addColumn("Telefono");
-            modelo1.addColumn("Cargo");
+            modelo1.addColumn("Codigo");
+            modelo1.addColumn("Nombre");
+            modelo1.addColumn("Proveedores");
+            modelo1.addColumn("Cantidad");
+            modelo1.addColumn("Precio");
+            modelo1.addColumn("Total");
             TablaDeEmpleados.setModel(modelo1);
          
             String sql="";
            if (rut.equals("")) {
-            sql = "SELECT * FROM usuario";
+            sql = "SELECT * FROM materiales";
         }else{
-             sql = "SELECT * FROM usuario WHERE CedulaDeIdentidad LIKE " + Integer.parseInt(txtRut.getText())   ;
+             sql = "SELECT * FROM materiales WHERE codigo LIKE " + Integer.parseInt(rut);
 
            }
             String[] datos = new String[6];
@@ -551,11 +559,17 @@ ActualizarEmpleado a= new ActualizarEmpleado();
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                datos[0] = rs.getString(3);
+                int j=1;
+                for(int i=0;i<datos.length;i++){
+                   
+                datos[0] = rs.getString(1);
                 datos[1] = rs.getString(2);
-                datos[2] = rs.getString(7);
-                datos[3] = rs.getString(5);
-                datos[4] = rs.getString(6);
+                datos[2] = rs.getString(6);
+                datos[3] = rs.getString(3);
+                datos[4] = rs.getString(4) +"$";
+                datos[5] = rs.getString(5)+"$";
+                }
+                
                 modelo1.addRow(datos);
                 
                 
@@ -612,19 +626,17 @@ public static void main(String args[]) {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtBuscador;
-    private javax.swing.JTextField txtCargo;
+    private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtRut;
-    private javax.swing.JTextField txtRut1;
+    private javax.swing.JTextField txtproveedores;
     // End of variables declaration//GEN-END:variables
 
    

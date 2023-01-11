@@ -16,12 +16,11 @@ public class Materiales {
     private  double total;
     private String proveedor;
 
-    public Materiales(int codigo, String nombre, int cantidad, double precio, double total, String proveedor) {
+    public Materiales(int codigo, String nombre, int cantidad, double precio, String proveedor) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidad = cantidad;
         this.precio = precio;
-        this.total = total;
         this.proveedor = proveedor;
     }
     public Materiales(){
