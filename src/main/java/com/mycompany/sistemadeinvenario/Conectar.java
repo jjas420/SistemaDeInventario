@@ -20,6 +20,8 @@ public class Conectar {
             System.out.println("conexion exitosa");
         } catch (Exception e){
             System.out.println(e.getMessage());
+            System.out.println("conectate en la base de datos");
+            
         }
         return conectar;
     }

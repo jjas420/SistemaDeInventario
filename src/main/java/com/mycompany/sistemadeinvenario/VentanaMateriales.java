@@ -195,14 +195,14 @@ public class VentanaMateriales extends javax.swing.JFrame {
 
         jLabel7.setText("codigo");
 
-        jButton4.setText("eliminar trabajador");
+        jButton4.setText("eliminar materiales");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Actualizar  Empleado");
+        jButton5.setText("Actualizar Materiales");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -484,7 +484,7 @@ void Solonumeros(JTextField valor, KeyEvent evt){
     private void TablaDeEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDeEmpleadosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_TablaDeEmpleadosMouseClicked
-ActualizarEmpleado a= new ActualizarEmpleado();
+ActualizarMateriales a= new ActualizarMateriales();
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        
             a.setVisible(true);
