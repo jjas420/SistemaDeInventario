@@ -25,7 +25,7 @@ public class ActualizarMateriales extends javax.swing.JFrame {
     public ActualizarMateriales() {
         initComponents();
         
-        this.setTitle("actualizar empleado");
+        this.setTitle("actualizar materiales");
         this.setLocationRelativeTo(null);
     }
 

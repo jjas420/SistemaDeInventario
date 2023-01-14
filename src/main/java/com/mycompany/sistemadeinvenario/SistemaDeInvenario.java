@@ -16,12 +16,17 @@ public class SistemaDeInvenario {
        Empleado emp = new Empleado();
        Conectar conectar = new Conectar();
        conectar.conexion();
-       
+       if (conectar.p){
        Login login= new Login();
        login.setVisible(true);
        login.setTitle("login");
        login.setLocationRelativeTo(null);
-       
+       }else{
+                           JOptionPane.showMessageDialog(null, "conectate en la base de datos");
+
+           
+        }
+    }
        
        
         
@@ -31,4 +36,4 @@ public class SistemaDeInvenario {
         login.setVisible(true);
         login.setTitle("login");*/
     }
-}
+

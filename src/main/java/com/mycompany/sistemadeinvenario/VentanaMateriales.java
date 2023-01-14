@@ -37,13 +37,14 @@ public class VentanaMateriales extends javax.swing.JFrame {
         this.setVisible(true);
         this.setTitle("empleado");
         this.setLocationRelativeTo(null);
-         ImageIcon img=new ImageIcon("src/imagenes/descarga.jpg");
+         ImageIcon img=new ImageIcon("src/imagenes/materiales.jpg");
         Icon icono= new ImageIcon(img.getImage().getScaledInstance(icono1.getWidth(), icono1.getHeight(),img.getImageLoadStatus()));
         icono1.setIcon(icono);
             ImageIcon img2=new ImageIcon("src/imagenes/INICIO.png");
         Icon icono3= new ImageIcon(img2.getImage().getScaledInstance(btnInicio.getWidth(), btnInicio.getHeight(),img.getImageLoadStatus()));
         btnInicio.setIcon(icono3);
         usuario1=usuario;
+        dinero();
         
         
         //btnInicio 
@@ -89,6 +90,8 @@ public class VentanaMateriales extends javax.swing.JFrame {
         btnInicio = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        totalDinero = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -228,12 +231,20 @@ public class VentanaMateriales extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("total de dinero en materiales: ");
+
+        totalDinero.setText("0 $");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalDinero, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -324,11 +335,19 @@ public class VentanaMateriales extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(totalDinero))
+                        .addGap(41, 41, 41))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -354,6 +373,7 @@ public class VentanaMateriales extends javax.swing.JFrame {
 
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
+            dinero();
 
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "numero de documento ya registrado");
@@ -414,7 +434,8 @@ void Solonumeros(JTextField valor, KeyEvent evt){
     }//GEN-LAST:event_txtproveedoresKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    mostrarDatos("");        // TODO add your handling code here:
+    mostrarDatos(""); 
+     dinero();// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtBuscadorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscadorKeyTyped
@@ -466,7 +487,7 @@ void Solonumeros(JTextField valor, KeyEvent evt){
                  JOptionPane.showMessageDialog(null, "eliminado con exito");
 
                
-
+                 dinero();
 
             }else{
             JOptionPane.showMessageDialog(null, "NUMERO DE DOCUMENTO NO ENCONTRADO");}
@@ -488,6 +509,7 @@ ActualizarMateriales a= new ActualizarMateriales();
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
        
             a.setVisible(true);
+             dinero();
             
             
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -559,7 +581,6 @@ ActualizarMateriales a= new ActualizarMateriales();
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             while (rs.next()) {
-                int j=1;
                 for(int i=0;i<datos.length;i++){
                    
                 datos[0] = rs.getString(1);
@@ -580,6 +601,26 @@ ActualizarMateriales a= new ActualizarMateriales();
         }
          
         
+        
+    }
+    
+    public void dinero(){
+            try {
+                String sql = "SELECT * FROM materiales";
+                double suma=0;
+                Statement st = cn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                            while (rs.next()) {
+                                suma+=rs.getDouble(5);
+                            }
+                            
+                            totalDinero.setText(Double. toString(suma)+" $");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(VentanaMateriales.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+    
         
     }
 public static void main(String args[]) {
@@ -626,11 +667,13 @@ public static void main(String args[]) {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel totalDinero;
     private javax.swing.JTextField txtBuscador;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCodigo;
